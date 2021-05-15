@@ -1,18 +1,24 @@
 %main purpose: preprocessing dataset into train_data and train_labels
 %-----------------------------------------------
 % read the data file
-T = readtable('CreditRating_Historical.dat');
-count_rows = height(T);
-count_columns = width(T);
+
+pkg load io
+T = csv2cell("data.dat");
+count_columns = columns(T);
+count_rows = rows(T);
+
+
 
 % extract train_data 
-train_data = T(: , 2:count_columns-1);
-train_data = table2array(train_data);
-train_data(:,count_columns-1-1) = train_data(:,count_columns-1-1)./12;
+train_data = cell2mat(T(: , 2:count_columns-1));
+%train_data = table2array(train_data);
+train_data(:,count_columns-1-1) = train_data(:,count_columns-1-1)/12;
+
 
 %create train_labels
 rating_labels = T(:,count_columns);
-rating_labels = table2array(rating_labels);
+%rating_labels = table2array(rating_labels);
+
 
 % create on-hot encoding labels
 train_labels = zeros(count_rows,7);

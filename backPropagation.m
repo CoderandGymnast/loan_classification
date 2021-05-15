@@ -1,4 +1,4 @@
-function [weights1Gradients, weights2Gradients] = backProgration(m, X, Y, weights1, weights2, regularizationRate)
+function [weights1Gradients, weights2Gradients, J] = backPropagation(m, X, Y, weights1, weights2, regularizationRate)
     % X: [ones(m,1) X]
 
     weights1Gradients = zeros(size(weights1));
@@ -9,6 +9,8 @@ function [weights1Gradients, weights2Gradients] = backProgration(m, X, Y, weight
     A2 = [ones(m, 1) sigmoid(Z2)];
     Z3 = A2 * weights2';
     H = sigmoid(Z3);
+    
+          J = crossEntropyLoss(m, H, Y, weights1, weights2, regularizationRate);
 
     % II. Back propagation:
     for i = 1:m% NOTE: Iterate each example.
