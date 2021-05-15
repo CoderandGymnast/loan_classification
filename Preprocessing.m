@@ -1,11 +1,11 @@
 %main purpose: preprocessing dataset into train_data and train_labels
 %-----------------------------------------------
 % read the data file
-function  Preprocessing()
+function  Preprocessing(fileName)
    
     %Load .dat file
     pkg load io
-    T = csv2cell("CreditRating_Historical.dat");
+    T = csv2cell(fileName);
     countColumns = columns(T);
     countRows = rows(T);
 

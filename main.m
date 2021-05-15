@@ -1,5 +1,5 @@
-%DataFile = "CreditRating_Historical.dat";
-%Preprocessing(DataFile);
+DataFile = "CreditRating_Historical.dat";
+Preprocessing(DataFile);
 
 pkg load io
 trainData = load("trainData.dat");
