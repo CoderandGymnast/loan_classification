@@ -3,7 +3,7 @@
 % read the data file
 
 pkg load io
-T = csv2cell("data.dat");
+T = csv2cell("CreditRating_Historical.dat");
 count_columns = columns(T);
 count_rows = rows(T);
 

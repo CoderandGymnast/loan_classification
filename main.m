@@ -10,3 +10,5 @@ weights2 = rand(7, 7);
 numIters = 100;
 
 [weights1, weights2, histories] = gradientDescent(m, train_data, train_labels, weights1, weights2, learningRate, numIters, regularizationRate);
+
+
