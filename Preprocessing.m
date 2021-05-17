@@ -1,7 +1,7 @@
 %main purpose: preprocessing dataset into train_data and train_labels
 %-----------------------------------------------
 % read the data file
-function  Preprocessing(fileName)
+function  preprocessing(fileName)
    
     %Load .dat file
     pkg load io

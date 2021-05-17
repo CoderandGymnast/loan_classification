@@ -1,34 +1,70 @@
-%DataFile = "CreditRating_Historical.dat";
+pkg load io
+
+% I. Preprocessing: 
+% - Only do once or whenever data is changed.
+
+% I.1. Load data & preprocessing:
+%DataFile = "RawData.dat";
 %Preprocessing(DataFile);
 
-pkg load io
-trainData = load("trainData.dat");
-trainLabels = load("trainLabels.dat");
+% I.2. Load preprocessed training set:
+trainingFeatures = load("TrainingFeatures.dat");
+trainingLabels = load("TrainingLabels.dat");
 
+% I.3. Determine the number of training set: 
+m = size(trainingFeatures, 1);
+
+% I.4. Add Bias node (1) to training features:
+trainingFeatures = [ones(m, 1) trainingFeatures];
+
+
+
+
+
+% II. Configuration model: 
+% - 3-layer model.
 numNodes = [7 7 7];
-m = size(trainData, 1);
-trainData = [ones(m, 1) trainData];
-learningRate = 0.7;
+learningRate = 0.4;
 regularizationRate = 0.001;
+numIters = [2000]; % The number of iteration for each epoch.
+numEpoches = 1; % The number of epoch.
+
+
+
+
+
+% III. Initiate weights 'OR' load trained weights: 
+
+% III.1. Initiate weights randomly: 
 %weights1 = rand(numNodes(2)-1, numNodes(1));
 %weights2 = rand(numNodes(3), numNodes(2));
-pkg load io
+
+% III.2. Load trained weights: 
 weights1 = cell2mat(csv2cell("weights1.dat"));
 weights2 = cell2mat(csv2cell("weights2.dat"));
 
-numIters = [1000];
 
-numBatch = 1;
 
-for i = 1:numBatch
+for i = 1:numEpoches
 
     tic
-    [weights1, weights2, learningRate, histories] = gradientDescent(m, trainData, trainLabels, weights1, weights2, learningRate, numIters(i), regularizationRate);
+    [weights1, weights2, learningRate, histories] = gradientDescent(m, trainingFeatures, trainingLabels, weights1, weights2, learningRate, numIters(i), regularizationRate);
     toc
     histories(numIters(i))
 
 end
 
+
+
+
+
+% IV. Save trained weights: 
+% - [ADVICE]: 	Should only save weights when cost converges.
 %saveWeights(weights1, weights2, numNodes);
 
+
+
+
+
+% V. Plot J: 
 plot(histories);
