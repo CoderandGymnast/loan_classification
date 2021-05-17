@@ -24,9 +24,9 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 % II. Configuration model: 
 % - 3-layer model.
 numNodes = [7 7 7];
-learningRate = 0.4;
+learningRate = 1;
 regularizationRate = 0.001;
-numIters = [2000]; % The number of iteration for each epoch.
+numIters = [20]; % The number of iteration for each epoch.
 numEpoches = 1; % The number of epoch.
 
 
@@ -36,19 +36,22 @@ numEpoches = 1; % The number of epoch.
 % III. Initiate weights 'OR' load trained weights: 
 
 % III.1. Initiate weights randomly: 
-%weights1 = rand(numNodes(2)-1, numNodes(1));
-%weights2 = rand(numNodes(3), numNodes(2));
+weights1 = rand(numNodes(2)-1, numNodes(1));
+weights2 = rand(numNodes(3), numNodes(2));
 
 % III.2. Load trained weights: 
-weights1 = cell2mat(csv2cell("weights1.dat"));
-weights2 = cell2mat(csv2cell("weights2.dat"));
+%weights1 = cell2mat(csv2cell("weights1.dat"));
+%weights2 = cell2mat(csv2cell("weights2.dat"));
+
+
 
 
 
 for i = 1:numEpoches
-
-    tic
-    [weights1, weights2, learningRate, histories] = gradientDescent(m, trainingFeatures, trainingLabels, weights1, weights2, learningRate, numIters(i), regularizationRate);
+	tic
+	%learningDecreaseRate = (numEpoches + 1 - i)/numEpoches;
+	learningDecreaseRate = 1;
+    [weights1, weights2, learningRate, histories] = gradientDescent(m, trainingFeatures, trainingLabels, weights1, weights2, learningRate, numIters(i), regularizationRate, learningDecreaseRate);
     toc
     histories(numIters(i))
 
@@ -60,11 +63,12 @@ end
 
 % IV. Save trained weights: 
 % - [ADVICE]: 	Should only save weights when cost converges.
-%saveWeights(weights1, weights2, numNodes);
+% saveWeights(weights1, weights2, numNodes);
 
 
-
+learningRate
 
 
 % V. Plot J: 
 plot(histories);
+histories

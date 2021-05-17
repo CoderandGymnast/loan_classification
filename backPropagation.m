@@ -8,7 +8,8 @@ function [weights1Gradients, weights2Gradients, J] = backPropagation(m, X, Y, we
     Z2 = X * weights1';
     A2 = [ones(m, 1) sigmoid(Z2)];
     Z3 = A2 * weights2';
-    H = sigmoid(Z3);
+    % H = sigmoid(Z3);
+	H = softmax(Z3);
 
     J = crossEntropyLoss(m, H, Y, weights1, weights2, regularizationRate);
 
@@ -16,7 +17,8 @@ function [weights1Gradients, weights2Gradients, J] = backPropagation(m, X, Y, we
     for i = 1:m% NOTE: Iterate each example.
 
         % II.1. Compute deltas:
-        delta3 = (H(i, :) - Y(i, :))';
+        % delta3 = (H(i, :) - Y(i, :))';
+		delta3 = -(Y(i,:).*(1-H(i,:)) + (1-Y(i,:)).*H(i,:))';
         delta2 = weights2(:, 2:end)' * delta3 .* sigmoidGradient(Z2(i, :)'); % NOTE: Bias does not change.
 
         % II.2. Compute weight gradients:
