@@ -9,11 +9,17 @@ function  preprocessing(fileName)
     countColumns = columns(T);
     countRows = rows(T);
 
-    % extract trainData 
-    trainData = cell2mat(T(: , 2:countColumns-1));
-    trainData(:,countColumns-1-1) = trainData(:,countColumns-1-1)/12;
-    csvwrite("trainData.dat", trainData);
-    %csvwrite("trainLabels.dat", trainData);
+    % extract trainingFeatures 
+    trainingFeatures = cell2mat(T(: , 2:countColumns-1));
+	numLinearFeatures = size(trainingFeatures,2);
+
+    trainingFeatures(:,size(trainingFeatures,2)) = trainingFeatures(:,size(trainingFeatures,2))/12;
+
+	for i=1:numLinearFeatures
+		trainingFeatures = [trainingFeatures(:,i).^2 trainingFeatures];
+	end
+
+    csvwrite("eTrainingFeatures.dat", trainingFeatures);
     
     %create trainLabels
     ratingLabels = T(:,countColumns);
@@ -31,5 +37,5 @@ function  preprocessing(fileName)
             end
         end
     end
-    csvwrite("trainLabels.dat", trainLabels);
+    csvwrite("eTrainingLabels.dat", trainLabels);
 end

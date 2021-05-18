@@ -13,7 +13,7 @@ function [] = saveWeights(weights1, weights2, numNodes)
         w1 = strcat(w1, "\n");
     end
 
-    filename = "sweights1.dat";
+    filename = "eweights1.dat";
     fid = fopen (filename, "w");
     fputs (fid, w1);
     fclose (fid);
@@ -31,7 +31,7 @@ function [] = saveWeights(weights1, weights2, numNodes)
         w2 = strcat(w2, "\n");
     end
 
-    filename = "sweights2.dat";
+    filename = "eweights2.dat";
     fid = fopen (filename, "w");
     fputs (fid, w2);
     fclose (fid);

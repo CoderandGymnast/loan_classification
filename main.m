@@ -5,11 +5,11 @@ pkg load io
 
 % I.1. Load data & preprocessing:
 %DataFile = "RawData.dat";
-%Preprocessing(DataFile);
+%preprocessing(DataFile);
 
 % I.2. Load preprocessed training set:
-trainingFeatures = load("TrainingFeatures.dat");
-trainingLabels = load("TrainingLabels.dat");
+trainingFeatures = load("eTrainingFeatures.dat");
+trainingLabels = load("eTrainingLabels.dat");
 
 % I.3. Determine the number of training set: 
 m = size(trainingFeatures, 1);
@@ -23,10 +23,10 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 
 % II. Configuration model: 
 % - 3-layer model.
-numNodes = [7 7 7];
-learningRate = 1;
+numNodes = [13 7 7];
+learningRate = 0.01;
 regularizationRate = 0.001;
-numIters = [20]; % The number of iteration for each epoch.
+numIters = [10000]; % The number of iteration for each epoch.
 numEpoches = 1; % The number of epoch.
 
 
@@ -63,12 +63,12 @@ end
 
 % IV. Save trained weights: 
 % - [ADVICE]: 	Should only save weights when cost converges.
-% saveWeights(weights1, weights2, numNodes);
+saveWeights(weights1, weights2, numNodes);
 
 
-learningRate
+
 
 
 % V. Plot J: 
+disp(learningRate);
 plot(histories);
-histories
