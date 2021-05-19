@@ -1,7 +1,7 @@
 function [class] = predict(x)
 
 	weights1File="weights1.dat";
-	weights2File="weights2.dat"
+	weights2File="weights2.dat";
 
     pkg load io
     weights1 = cell2mat(csv2cell(weights1File));
