@@ -23,11 +23,11 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 
 % II. Configuration model: 
 % - 3-layer model.
-numNodes = [3 2 1];
+numNodes = [3 10 1];
 learningRate = 0.1;
 regularizationRate = 0;
-numIters = [100]; % The number of iteration for each epoch.
-numEpoches = 1; % The number of epoch.
+numIters = [1000 1000 1000 1000 1000 1000 1000 1000 1000 1000]; % The number of iteration for each epoch.
+numEpoches = 10; % The number of epoch.
 
 
 
@@ -36,12 +36,12 @@ numEpoches = 1; % The number of epoch.
 % III. Initiate weights 'OR' load trained weights: 
 
 % III.1. Initiate weights randomly: 
-weights1 = rand(numNodes(2)-1, numNodes(1));
-weights2 = rand(numNodes(3), numNodes(2));
+% weights1 = rand(numNodes(2)-1, numNodes(1));
+% weights2 = rand(numNodes(3), numNodes(2));
 
 % III.2. Load trained weights: 
-%weights1 = cell2mat(csv2cell("weights1.dat"));
-%weights2 = cell2mat(csv2cell("weights2.dat"));
+weights1 = cell2mat(csv2cell("./decision_boundaries/weights1.dat"));
+weights2 = cell2mat(csv2cell("./decision_boundaries/weights2.dat"));
 
 
 
@@ -63,7 +63,7 @@ end
 
 % IV. Save trained weights: 
 % - [ADVICE]: 	Should only save weights when cost converges.
-% saveWeights(weights1, weights2, numNodes);
+saveWeights(weights1, weights2, numNodes);
 
 
 
