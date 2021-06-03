@@ -6,7 +6,7 @@ weights1 = cell2mat(csv2cell(weights1File));
 weights2 = cell2mat(csv2cell(weights2File));
 
 x1=-1:0.01:1;
-for i=1:1
+for i=1:2
 w=weights1(i,:);
 y = @(x)(w(1) + w(2)*x)/-w(3); % NOTE: 0-based to 1-based.
 x2=y(x1);
