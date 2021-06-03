@@ -8,9 +8,8 @@ function [weights1Gradients, weights2Gradients, J] = backPropagation(m, X, Y, we
     Z2 = X * weights1';
     A2 = [ones(m, 1) sigmoid(Z2)];
     Z3 = A2 * weights2';
-    % H = sigmoid(Z3);
-	H = softmax(Z3);
-
+    H = sigmoid(Z3); % NOTE: Must use Sigmoid acivation for Binaries Classification.
+	%H = softmax(Z3);
     J = crossEntropyLoss(m, H, Y, weights1, weights2, regularizationRate);
 
     % II. Back propagation:
