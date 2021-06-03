@@ -23,7 +23,7 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 
 % II. Configuration model: 
 % - 3-layer model.
-numNodes = [3 3 1];
+numNodes = [3 2 1];
 learningRate = 0.8;
 regularizationRate = 0;
 numIters = [1000 1000 1000 1000 1000 1000 1000 1000 1000 1000]; % The number of iteration for each epoch.
