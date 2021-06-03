@@ -24,7 +24,7 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 % II. Configuration model: 
 % - 3-layer model.
 numNodes = [3 10 1];
-learningRate = 0.1;
+learningRate = 0.8;
 regularizationRate = 0;
 numIters = [1000 1000 1000 1000 1000 1000 1000 1000 1000 1000]; % The number of iteration for each epoch.
 numEpoches = 10; % The number of epoch.
@@ -63,7 +63,7 @@ end
 
 % IV. Save trained weights: 
 % - [ADVICE]: 	Should only save weights when cost converges.
-saveWeights(weights1, weights2, numNodes);
+%saveWeights(weights1, weights2, numNodes);
 
 
 

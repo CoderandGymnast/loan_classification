@@ -16,7 +16,7 @@ for i = 1:m
     %     trueCount++;
     % end
     if predictedClasses(i) == labels(i)
-        count++;
+        trueCount++;
     end
 
 end
