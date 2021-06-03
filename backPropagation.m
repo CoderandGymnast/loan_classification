@@ -16,8 +16,8 @@ function [weights1Gradients, weights2Gradients, J] = backPropagation(m, X, Y, we
     for i = 1:m% NOTE: Iterate each example.
 
         % II.1. Compute deltas:
-        % delta3 = (H(i, :) - Y(i, :))';
-		delta3 = -(Y(i,:).*(1-H(i,:)) + (1-Y(i,:)).*H(i,:))';
+        delta3 = (H(i, :) - Y(i, :))'; % NOTE: Must use this for Sigmoid.
+		% delta3 = -(Y(i,:).*(1-H(i,:)) + (1-Y(i,:)).*H(i,:))';
         delta2 = weights2(:, 2:end)' * delta3 .* sigmoidGradient(Z2(i, :)'); % NOTE: Bias does not change.
 
         % II.2. Compute weight gradients:
