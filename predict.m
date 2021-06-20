@@ -14,7 +14,7 @@ function [class] = predict(x)
 
 	res = ismember(h,max(h));
 
-    labels = {'AAA', 'AA', 'A', 'BBB', 'BB', 'B', 'CCC'};
+    labels = {'A', 'B', 'C'};
 	for i=1:length(labels)
 		if res(i)==1
 			class=labels(i);

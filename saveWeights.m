@@ -13,7 +13,7 @@ function [] = saveWeights(weights1, weights2, numNodes)
         w1 = strcat(w1, "\n");
     end
 
-    filename = "./decision_boundaries/weights1.dat";
+    filename = "weights1.dat";
     fid = fopen (filename, "w");
     fputs (fid, w1);
     fclose (fid);
@@ -31,7 +31,7 @@ function [] = saveWeights(weights1, weights2, numNodes)
         w2 = strcat(w2, "\n");
     end
 
-    filename = "./decision_boundaries/weights2.dat";
+    filename = "weights2.dat";
     fid = fopen (filename, "w");
     fputs (fid, w2);
     fclose (fid);

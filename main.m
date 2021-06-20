@@ -4,12 +4,12 @@ pkg load io
 % - Only do once or whenever data is changed.
 
 % I.1. Load data & preprocessing:
-%DataFile = "RawData.dat";
-%preprocessing(DataFile);
+% DataFile = "RawData.dat";
+% preprocessing(DataFile);
 
 % I.2. Load preprocessed training set:
-trainingFeatures = load("./decision_boundaries/features.dat");
-trainingLabels = load("./decision_boundaries/labels.dat");
+trainingFeatures = load("TrainingFeatures2.dat");
+trainingLabels = load("TrainingLabels2.dat");
 
 % I.3. Determine the number of training set: 
 m = size(trainingFeatures, 1);
@@ -23,11 +23,11 @@ trainingFeatures = [ones(m, 1) trainingFeatures];
 
 % II. Configuration model: 
 % - 3-layer model.
-numNodes = [3 2 1];
-learningRate = 0.8;
-regularizationRate = 0;
-numIters = [1000 1000 1000 1000 1000 1000 1000 1000 1000 1000]; % The number of iteration for each epoch.
-numEpoches = 10; % The number of epoch.
+numNodes = [7 5 3];
+learningRate = 2;
+regularizationRate = 0.1;
+numIters = [1000 1000 1000]; % The number of iteration for each epoch.
+numEpoches = 3	; % The number of epoch.
 
 
 
@@ -50,7 +50,7 @@ weights2 = rand(numNodes(3), numNodes(2));
 for i = 1:numEpoches
 	tic
 	%learningDecreaseRate = (numEpoches + 1 - i)/numEpoches;
-	learningDecreaseRate = 1;
+	learningDecreaseRate = 1/2;
     [weights1, weights2, learningRate, histories] = gradientDescent(m, trainingFeatures, trainingLabels, weights1, weights2, learningRate, numIters(i), regularizationRate, learningDecreaseRate);
     toc
     histories(numIters(i))
@@ -70,5 +70,5 @@ saveWeights(weights1, weights2, numNodes);
 
 
 % V. Plot J: 
-% disp(learningRate);
+disp(learningRate);
 plot(histories);
